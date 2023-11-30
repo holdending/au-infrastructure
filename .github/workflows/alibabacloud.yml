@@ -29,7 +29,8 @@ env:
   REGISTRY: registry.cn-shanghai.aliyuncs.com
   NAMESPACE: liveramp
   IMAGE: ae-copilot
-  TAG: ${{ runner.command 'git describe --tags --abbrev=0' }}
+  TAG: ${{ steps.git-version.outputs.TAG }}
+  # TAG: ${{ runner.command 'git describe --tags --abbrev=0' }}
   # TAG: ${{ $(git describe --tags --abbrev=0) }}
  
 
@@ -47,6 +48,11 @@ jobs:
       with:
         repository: holdending/ae-copilot
         ref: main
+
+    - name: Get Git Version
+      id: git-version
+      run: |
+        echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
 
     # 1.1 Login to ACR
     - name: Login to ACR with the AccessKey pair
