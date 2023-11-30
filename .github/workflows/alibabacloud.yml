@@ -44,7 +44,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       with:
-        repository: holdending/ae-copilot@v1
+        repository: holdending/ae-copilot
+        ref: main
 
     # 1.1 Login to ACR
     - name: Login to ACR with the AccessKey pair
