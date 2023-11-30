@@ -29,7 +29,8 @@ env:
   REGISTRY: registry.cn-shanghai.aliyuncs.com
   NAMESPACE: liveramp
   IMAGE: ae-copilot
-  TAG: ${{ git describe --tags --abbrev=0}}
+  TAG: ${{ shell 'git describe --tags --abbrev=0' }}
+  # TAG: ${{ $(git describe --tags --abbrev=0) }}
  
 
 permissions:
