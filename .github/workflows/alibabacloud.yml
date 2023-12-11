@@ -110,9 +110,9 @@ jobs:
 
     - name: Push changes
       uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ github.token }}
-          branch: main
+      with:
+        github_token: ${{ github.token }}
+        branch: main
     # - uses: fastify/github-action-merge-dependabot@v2.1.1
     #   with:
     #     github-token: ${{ secrets.GITHUB_TOKEN }}
