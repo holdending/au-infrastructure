@@ -95,7 +95,7 @@ jobs:
       with:
         repository: holdending/cloud-deployment
         ref: main
-        token: ${{ secrets.PAT_TOKEN }}
+        token: "${{ secrets.PAT_TOKEN2 }}"
         # persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
         # fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
