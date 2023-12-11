@@ -74,6 +74,7 @@ jobs:
 
     - name: Update deployment.yaml
       run: |-
+        cd ../
         pwd
         ls -ll
         cd helm
