@@ -79,13 +79,13 @@ jobs:
         ref: main
 
 
-    - name: Update deployment.yaml
+    - name: Update values.yaml
       run: |-
         cd envs
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" values.yaml 
-        cat deployment.yaml 
+        cat values.yaml 
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
-        git add deployment.yaml
-        git commit -m "Update deployment.yaml"
+        git add values.yaml
+        git commit -m "Update values.yaml"
         git push
