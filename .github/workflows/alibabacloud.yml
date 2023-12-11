@@ -97,10 +97,9 @@ jobs:
 
     - name: Update values.yaml
       env:
-        GITHUB_TOKEN: ${{ github.token }}
-        repo-token: ${{ github.token }}
+        github_token: ${{ github.token }}
+        repo_token: ${{ github.token }}
       run: |-
-        echo "GITHUB_TOKEN: $GITHUB_TOKEN"
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
