@@ -74,21 +74,17 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-        repo-token: ${{ github.token }}
       with:
         repository: holdending/cloud-deployment
         ref: main
-        repo-token: ${{ github.token }}
 
     - name: Update values.yaml
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        repo-token: ${{ github.token }}
       run: |-
         echo "GITHUB_TOKEN: $GITHUB_TOKEN"
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
-        git diff  
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
         git add envs/values.yaml
