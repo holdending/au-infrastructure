@@ -73,7 +73,7 @@ jobs:
         docker push "$REGISTRY/$NAMESPACE/$IMAGE:$TAG"
 
     - name: Update deployment.yaml
-        run: |
+        run: |-
           cd helm/ae-copilot
           sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' deployment.yaml 
           git config --global user.name 'holden.ding'
