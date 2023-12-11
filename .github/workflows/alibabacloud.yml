@@ -88,6 +88,6 @@ jobs:
         git diff  
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
-        git add values.yaml
+        git add envs/values.yaml
         git commit -m "Update values.yaml"
         git push
