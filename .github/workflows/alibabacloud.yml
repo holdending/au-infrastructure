@@ -74,12 +74,16 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
       with:
         repository: holdending/cloud-deployment
         ref: main
 
 
     - name: Update values.yaml
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
       run: |-
         cd envs
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" values.yaml 
