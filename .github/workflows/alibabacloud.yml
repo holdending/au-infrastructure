@@ -82,6 +82,7 @@ jobs:
     - name: Update deployment.yaml
       run: |-
         pwd
+        ls -ll
         cd helm
         cd ae-copilot
         sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' deployment.yaml 
