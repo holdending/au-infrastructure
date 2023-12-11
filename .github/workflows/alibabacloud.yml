@@ -91,12 +91,12 @@ jobs:
     #     docker push "$REGISTRY/$NAMESPACE/$IMAGE:$TAG"
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: holdending/cloud-deployment
         ref: main
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0
+        # persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        # fetch-depth: 0
 
 
       # github.token  secrets.GITHUB_TOKEN 
@@ -105,18 +105,18 @@ jobs:
       #   github_token: ${{ github.token }}
       run: |-
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
-        /usr/bin/git config --global user.name 'holden.ding'
-        /usr/bin/git config --global user.email 'holden.ding@liveramp.com'
-        /usr/bin/git add envs/values.yaml
-        /usr/bin/git commit -m "Update values.yaml"
+        git config --global user.name 'holden.ding'
+        git config --global user.email 'holden.ding@liveramp.com'
+        git add envs/values.yaml
+        git commit -m "Update values.yaml"
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/holdending/cloud-deployment.git
-        # /usr/bin/git push
+        git push
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     branch: ${{ github.ref }}
     # - uses: fastify/github-action-merge-dependabot@v2.1.1
     #   with:
     #     github-token: ${{ secrets.GITHUB_TOKEN }}
