@@ -104,7 +104,7 @@ jobs:
       env:
         github_token: ${{ secrets.GITHUB_TOKEN }}
       run: |-
-        git config remote.origin.url https://github.com/holdending/cloud-deployment.git
+        # git config remote.origin.url https://github.com/holdending/cloud-deployment.git
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
