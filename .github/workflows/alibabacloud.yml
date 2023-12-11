@@ -74,13 +74,16 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+        repo-token: ${{ github.token }}
       with:
         repository: holdending/cloud-deployment
         ref: main
+        repo-token: ${{ github.token }}
 
     - name: Update values.yaml
       env:
-        # GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
         GITHUB_TOKEN: ${{ github.token }}
       run: |-
         echo "GITHUB_TOKEN: $GITHUB_TOKEN"
