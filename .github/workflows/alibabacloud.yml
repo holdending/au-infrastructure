@@ -80,7 +80,8 @@ jobs:
 
     - name: Update values.yaml
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
+        # GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
+        GITHUB_TOKEN: ${{ github.token }}
       run: |-
         echo "GITHUB_TOKEN: $GITHUB_TOKEN"
         cd envs
