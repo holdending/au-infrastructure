@@ -75,9 +75,3 @@ jobs:
     - name: Update deployment.yaml
         run: |-
           cd helm/ae-copilot
-          sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' deployment.yaml 
-          git config --global user.name 'holden.ding'
-          git config --global user.email 'holden.ding@liveramp.com'
-          git add deployment.yaml
-          git commit -m "Update deployment.yaml"
-          git push
