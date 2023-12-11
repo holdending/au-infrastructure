@@ -72,11 +72,16 @@ jobs:
     #     docker build -f ./cmd/Dockerfile.local -t "$REGISTRY/$NAMESPACE/$IMAGE:$TAG" .
     #     docker push "$REGISTRY/$NAMESPACE/$IMAGE:$TAG"
 
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: holdending/cloud-deployment
+        ref: main
+
+
     - name: Update deployment.yaml
       run: |-
-        cd ../
         pwd
-        ls -ll
         cd helm
         cd ae-copilot
         sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' deployment.yaml 
