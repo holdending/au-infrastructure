@@ -22,11 +22,6 @@ name: Build and Deploy to ACK
 on:
   push:
     branches: [ "main" ]
-    
-permissions :
-  pull-requests: write
-  issues: write
-  repository-projects: write
 
 # Environment variables available to all jobs and steps in this workflow.
 env:
@@ -40,8 +35,13 @@ env:
   # TAG: ${{ $(git describe --tags --abbrev=0) }}
  
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
+permissions :
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 
 jobs:
   build:
