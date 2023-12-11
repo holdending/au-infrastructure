@@ -32,7 +32,7 @@ spec:
       containers:
         - name: ae-copilot
           # image: registry.cn-shanghai.aliyuncs.com/liveramp/ae-copilot:{{ .Values.env.APP_VERSION }}
-          image: registry.cn-shanghai.aliyuncs.com/liveramp/ae-copilot:${{ github.sha }}
+          image: registry.cn-shanghai.aliyuncs.com/liveramp/ae-copilot:APP_VERSION
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
