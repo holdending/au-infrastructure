@@ -95,6 +95,7 @@ jobs:
       with:
         repository: holdending/cloud-deployment
         ref: main
+        github_token: ${{ github.token }}
 
       # github.token  secrets.GITHUB_TOKEN 
     - name: Update values.yaml
@@ -102,12 +103,12 @@ jobs:
         github_token: ${{ github.token }}
       run: |-
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
-        git config --global user.name 'holden.ding'
-        git config --global user.email 'holden.ding@liveramp.com'
-        git add envs/values.yaml
-        git commit -m "Update values.yaml"
+        /usr/bin/git config --global user.name 'holden.ding'
+        /usr/bin/git config --global user.email 'holden.ding@liveramp.com'
+        /usr/bin/git add envs/values.yaml
+        /usr/bin/git commit -m "Update values.yaml"
         # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/holdending/cloud-deployment.git
-        git push
+        /usr/bin/git push
 
     # - name: Push changes
     #   uses: ad-m/github-push-action@master
