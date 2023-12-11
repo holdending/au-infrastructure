@@ -82,7 +82,7 @@ jobs:
 
 
     - name: Update values.yaml
-      env:
+      with:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
       run: |-
         cd envs
