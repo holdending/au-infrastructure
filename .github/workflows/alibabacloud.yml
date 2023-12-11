@@ -95,14 +95,15 @@ jobs:
       with:
         repository: holdending/cloud-deployment
         ref: main
-        github_token: ${{ github.token }}
+
 
       # github.token  secrets.GITHUB_TOKEN 
     - name: Update values.yaml
-      env:
-        github_token: ${{ github.token }}
+      # env:
+      #   github_token: ${{ github.token }}
       run: |-
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
+        /usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ${{ github.token }}
         /usr/bin/git config --global user.name 'holden.ding'
         /usr/bin/git config --global user.email 'holden.ding@liveramp.com'
         /usr/bin/git add envs/values.yaml
