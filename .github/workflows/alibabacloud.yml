@@ -105,13 +105,14 @@ jobs:
         git config --global user.email 'holden.ding@liveramp.com'
         git add envs/values.yaml
         git commit -m "Update values.yaml"
-        # git push
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/holdending/cloud-deployment
+        git push
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ github.token }}
-        branch: main
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ github.token }}
+    #     branch: main
     # - uses: fastify/github-action-merge-dependabot@v2.1.1
     #   with:
     #     github-token: ${{ secrets.GITHUB_TOKEN }}
