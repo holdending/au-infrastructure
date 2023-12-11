@@ -81,19 +81,19 @@ jobs:
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
 
-    # # 1.2 Buid and push image to ACR
-    # - name: Build and push image to ACR
-    #   # env:
-    #   #   IMAGE_TAG: ${{ github.sha }}
-    #   run: |-
-    #     GOOS=linux GOARCH=amd64 go build -tags='$(BUILD_TAGS)' -o ./bin/ae-copilot  ./cmd
-    #     docker build -f ./cmd/Dockerfile.local -t "$REGISTRY/$NAMESPACE/$IMAGE:$TAG" .
-    #     docker push "$REGISTRY/$NAMESPACE/$IMAGE:$TAG"
+    # 1.2 Buid and push image to ACR
+    - name: Build and push image to ACR
+      # env:
+      #   IMAGE_TAG: ${{ github.sha }}
+      run: |-
+        GOOS=linux GOARCH=amd64 go build -tags='$(BUILD_TAGS)' -o ./bin/ae-copilot  ./cmd
+        docker build -f ./cmd/Dockerfile.local -t "$REGISTRY/$NAMESPACE/$IMAGE:$TAG" .
+        docker push "$REGISTRY/$NAMESPACE/$IMAGE:$TAG"
 
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        repository: holdending/cloud-deployment
+        repository: holdending/argocd-deployment
         ref: main
         token: "${{ secrets.PAT_TOKEN }}"
         # persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
@@ -105,13 +105,13 @@ jobs:
       # env:
       #   github_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # git config remote.origin.url https://github.com/holdending/cloud-deployment.git
-        sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
+        # git config remote.origin.url https://github.com/holdending/argocd-deployment.git
+        sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" ae-copilot/values.yaml
         git config --global user.name 'holden.ding'
         git config --global user.email 'holden.ding@liveramp.com'
-        git add envs/values.yaml
-        git commit -m "Update values.yaml"
-        # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/holdending/cloud-deployment.git
+        git add ae-copilot/values.yaml
+        git commit -m "Update ae-copilot/values.yaml"
+        # git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/holdending/argocd-deployment.git
         git push
 
     # - name: Push changes
