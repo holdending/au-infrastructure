@@ -77,11 +77,10 @@ jobs:
       with:
         repository: holdending/cloud-deployment
         ref: main
-        github_token: ${{ secrets.ACTIONS_PAT }}
-        repo-token: ${{ secrets.ACTIONS_PAT }}
-
 
     - name: Update values.yaml
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
       run: |-
         cd envs
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" values.yaml 
