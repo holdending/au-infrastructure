@@ -99,8 +99,7 @@ jobs:
       # github.token  secrets.GITHUB_TOKEN 
     - name: Update values.yaml
       env:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ github.token }}
       run: |-
         sed -i "s/APP_VERSION:.*/APP_VERSION: '${{ github.sha }}'/" envs/values.yaml
         git config --global user.name 'holden.ding'
