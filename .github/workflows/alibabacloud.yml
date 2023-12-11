@@ -74,11 +74,11 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
-      env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
       with:
         repository: holdending/cloud-deployment
         ref: main
+        github_token: ${{ secrets.ACTIONS_PAT }}
+        repo-token: ${{ secrets.ACTIONS_PAT }}
 
 
     - name: Update values.yaml
